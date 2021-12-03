@@ -4,7 +4,7 @@ import time
 import matplotlib.pyplot as plt
 import statistics
 import pickle
-""" check if the user supplied path to motioncor log files, if not handle the exception."""
+""" check if the user supplied path to ctffind log files, if not handle the exception."""
 try:
 	filepath_ctffind4 = sys.argv[1]
 except IndexError:
