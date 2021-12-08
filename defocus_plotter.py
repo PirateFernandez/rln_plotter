@@ -2,6 +2,7 @@ import os
 import sys
 import time
 import matplotlib.pyplot as plt
+import matplotlib.ticker as tck
 import statistics
 import pickle
 import matplotlib.animation as animation
@@ -9,7 +10,7 @@ import matplotlib.gridspec as gridspec
 import numpy as np
 import mrcfile
 ###set up plot with gridspect to be updated by animate function ###
-fig = plt.figure(figsize=(5,5))
+fig = plt.figure(figsize=(10,10))
 spec = gridspec.GridSpec(ncols=4, nrows=14, wspace=2)
 ###segment the figure in subplots using gridspec specification with numpy slicing###
 f1_ax1 = fig.add_subplot(spec[0:-10,:])
@@ -55,6 +56,7 @@ def animate(i, data_x, data_y, data_x2, data_y2):
 	f1_ax1.plot(data_x, data_y, 'ko-')
 	f1_ax1.set_ylabel('defocus [um]')
 	f1_ax1.tick_params(bottom=False, top=True, labelbottom=False, labeltop=True)
+	f1_ax1.yaxis.set_minor_locator(tck.AutoMinorLocator())
 	f1_ax1.set_title('image number', y=1.3)
 	f1_ax1.hlines(max(data_y), 0, len(data_x), colors='blue', linestyles='dotted', label='max')
 	f1_ax1.hlines(min(data_y), 0, len(data_x), colors='red', linestyles='dotted', label='min')
@@ -75,6 +77,7 @@ def animate(i, data_x, data_y, data_x2, data_y2):
 	###plot resolution data with horizontal lines for max, min,avg resolution###
 	f1_ax4.plot(data_x2, data_y2, 'co-')
 	f1_ax4.set_ylabel('resolution [A]')
+	f1_ax4.yaxis.set_minor_locator(tck.AutoMinorLocator())
 	f1_ax4.set_title('image number', y=-0.5)
 	f1_ax4.hlines(max(data_y2), 0, len(data_x2), colors='blue', linestyles='dotted')
 	f1_ax4.hlines(min(data_y2), 0, len(data_x2), colors='red', linestyles='dotted')
