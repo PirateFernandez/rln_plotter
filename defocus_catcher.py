@@ -4,7 +4,7 @@ import time
 import matplotlib.pyplot as plt
 import statistics
 import pickle
-""" check if the user supplied path to ctffind log files, if not handle the exception."""
+""" check if the user supplied path to motioncor log files, if not handle the exception."""
 try:
 	filepath_ctffind4 = sys.argv[1]
 except IndexError:
@@ -93,12 +93,24 @@ while True:
 						i2_split = i2.split(" ")
 						resolution_1.append(float(i2_split[9]))
 		return resolution_1
+	def extract_azymuth(filelistwithpath):
+		azymuth_1 = []
+		for i in filelistwithpath:
+			with open(i, 'r') as f:
+				f_lines = f.readlines()
+				for i2 in f_lines:
+					if 'Estimated azimuth of astigmatism:' in i2:
+						i2_split = i2.split(" ")
+						azymuth_1.append(float(i2_split[-2]))
+		return azymuth_1	
+		
 	###
 	list_defocus_1 = extract_defocus_1(file_list_ctffind_4_log_with_path)
 	list_defocus_2 = extract_defocus_2(file_list_ctffind_4_log_with_path)
 	avg_defocus_glob = avg_defocus(list_defocus_1, list_defocus_2)
 	avg_defocus_glob_2f = []
 	resolution_list = extract_resolution(file_list_ctffind_4_log_with_path)
+	list_azymuth = extract_azymuth(file_list_ctffind_4_log_with_path)
 	#
 	for i in avg_defocus_glob:
 		i2 = float(f"{i:.2f}")
@@ -122,6 +134,8 @@ while True:
 		pickle.dump(file_list_ctffind_4_PS_with_path, f)
 	with open('resolution_list.pkl', 'wb') as f:
 		pickle.dump(resolution_list, f)
-	print(f"{avg_defocus_glob_2f} {resolution_list} {file_list_ctffind_4_PS_with_path[-1]}")
+	with open('azymuth.pkl', 'wb') as f:
+		pickle.dump(list_azymuth, f)
+	print(f"{list_azymuth[-10:]}")
 
 	time.sleep(2)
