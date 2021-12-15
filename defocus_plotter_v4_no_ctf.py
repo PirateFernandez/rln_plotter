@@ -33,17 +33,17 @@ f1_ax10 = fig.add_subplot(spec[12:-1,4:-2])
 #polar
 f1_ax11 = fig.add_subplot(spec[0:-13,6:], projection='polar')
 f1_ax11.set_xticklabels([])
-f1_ax11.set_yticklabels([])
+#f1_ax11.set_yticklabels([])
 #f1_ax11.set_yticks([])
 f1_ax12 = fig.add_subplot(spec[4:-9,6:], projection='polar')
 f1_ax12.set_xticklabels([])
-f1_ax12.set_yticklabels([])
+#f1_ax12.set_yticklabels([])
 f1_ax13 = fig.add_subplot(spec[8:-5,6:], projection='polar')
 f1_ax13.set_xticklabels([])
-f1_ax13.set_yticklabels([])
+#f1_ax13.set_yticklabels([])
 f1_ax14 = fig.add_subplot(spec[12:-1,6:], projection='polar')
 f1_ax14.set_xticklabels([])
-f1_ax14.set_yticklabels([])
+#f1_ax14.set_yticklabels([])
 ###define data to be reprsented and pass to animation function###
 data_x = []
 data_y = []
