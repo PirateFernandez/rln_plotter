@@ -13,20 +13,19 @@ import numpy as np
 fig = plt.figure(figsize=(15,15))
 spec = gridspec.GridSpec(ncols=8, nrows=16, wspace=2)
 ###segment the figure in subplots using gridspec specification with numpy slicing###
+### ax1 -> top left plot all defocus/img-number ###
 f1_ax1 = fig.add_subplot(spec[0:-13,:-4])
+### ax2 -> left plot last 48 defocus/img-number ###
 f1_ax2 = fig.add_subplot(spec[4:-9,:-6])
-###remove ticks form axes###
-#f1_ax2.set_yticks([])
-#f1_ax2.set_xticks([])
+### ax3 -> left plot last 32 defocus/img-number ###
 f1_ax3 = fig.add_subplot(spec[4:-9,2:-4])
-#f1_ax3.set_yticks([])
-#f1_ax3.set_xticks([])
+### ax4 -> top left plot all resolution/img-number ###
 f1_ax4 = fig.add_subplot(spec[8:-5,:-4])
+### ax5 -> top right hist all defocus###
 f1_ax5 = fig.add_subplot(spec[0:-13,4:-2])
+### ax6 -> left plot last 48 resolution/img-number ###
 f1_ax6 = fig.add_subplot(spec[8:-5,4:-2])
 f1_ax7 = fig.add_subplot(spec[4:-9,4:-2])
-#f1_ax7.set_yticks([])
-#f1_ax7.set_xticks([])
 f1_ax8 = fig.add_subplot(spec[12:-1,:-6])
 f1_ax9 = fig.add_subplot(spec[12:-1,2:-4])
 f1_ax10 = fig.add_subplot(spec[12:-1,4:-2])
@@ -34,7 +33,6 @@ f1_ax10 = fig.add_subplot(spec[12:-1,4:-2])
 f1_ax11 = fig.add_subplot(spec[0:-13,6:], projection='polar')
 f1_ax11.set_xticklabels([])
 #f1_ax11.set_yticklabels([])
-#f1_ax11.set_yticks([])
 f1_ax12 = fig.add_subplot(spec[4:-9,6:], projection='polar')
 f1_ax12.set_xticklabels([])
 #f1_ax12.set_yticklabels([])
@@ -44,7 +42,7 @@ f1_ax13.set_xticklabels([])
 f1_ax14 = fig.add_subplot(spec[12:-1,6:], projection='polar')
 f1_ax14.set_xticklabels([])
 #f1_ax14.set_yticklabels([])
-###define data to be reprsented and pass to animation function###
+###define data to be represented and pass to animation function###
 data_x = []
 data_y = []
 data_x2 = []
