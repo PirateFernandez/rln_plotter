@@ -2,9 +2,17 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
+###get rln directory path.###
 rln_directory = os.getcwd()
+###main condition for c2d plotting.###
 if 'rln_directoy/Select' :
-	select_jobs = os.listdir(f'{rln_directory}/Select')
+	###capture all jobs folders.###
+	select_elements = os.listdir(f'{rln_directory}/Select')
+	select_jobs = []
+	for i in select_elements:
+		if 'job' in i:
+			select_jobs.append(i)
+	###identify the highest job number to look for images.npy###
 	jobs_numbers = []
 	for i in select_jobs:
 		i_slpit = i.split("b")
@@ -15,6 +23,7 @@ if 'rln_directoy/Select' :
 	if max(jobs_numbers) < 100:
 		lastest_job = f"job0{max(jobs_numbers)}"
 		#print(lastest_job)
+	###load numpy array from .npy from the highest job number.###
 	np_images_loaded =  np.load(f'{rln_directory}/Select/{lastest_job}/images.npy')
 	###the size of the first dimension is the number of c2d selected.###
 	number_of_c2ds = np.size(np_images_loaded, 0)
