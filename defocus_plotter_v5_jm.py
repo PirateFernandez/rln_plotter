@@ -92,7 +92,7 @@ def plot_resolution(axis, data_y, image_number):
 
 def scatter(axis, data_y, percent):
 	""" Make a scatter plot of a given percent of the data. """
-	last_index = round((-(len(data_y) * 10) / 100))
+	last_index = round((-(len(data_y) * percent) / 100))
 	yy = data_y[-last_index:]
 	n = len(yy)
 	ii = range(0, n)
@@ -229,5 +229,7 @@ def animate(i):
 	# 	f1_ax15.imshow(np_images[3,:,:], cmap='gray')
 
 
+
 ani = animation.FuncAnimation(fig, animate, interval=1000)
+fig.tight_layout()
 plt.show()	
